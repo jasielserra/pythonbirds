@@ -104,7 +104,19 @@ class Carro:
         return self.motor.velocidade
 
     def frear(self):
-        return self.motor.velocidade
+        return self.motor.frear()
+
+    def acelerar(self):
+        self.motor.acelerar()
+
+    def calcular_direcao(self):
+        return self.direcao.valor
+
+    def girar_a_direita(self):
+        self.direcao.girar_a_direita()
+
+    def girar_a_esquerda(self):
+        self.direcao.girar_a_esquerda()
 
 class Motor:
     def __init__(self):
