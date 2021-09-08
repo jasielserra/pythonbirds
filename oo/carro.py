@@ -16,6 +16,7 @@ A direcção terá a responsabilidade de controlar a direção. Ela oferece
 os seguintes atributos:
 1) valor de direção com valores possíveis: Norte, Sul, Leste, Oeste
 2) Método girar_a_direita
+3) Método girar_a_esquerda
 
   N
 O   L
@@ -27,13 +28,13 @@ O   L
   >>> motor.velocidade
   0
   >>> motor.acelerar()
-  >>> motor.velocidade()
+  >>> motor.velocidade
   1
   >>> motor.acelerar()
-  >>> motor.velocidade()
+  >>> motor.velocidade
   2
   >>> motor.acelerar()
-  >>> motor.velocidade()
+  >>> motor.velocidade
   3
   >>> motor.frear()
   >>> motor.velocidade
@@ -82,16 +83,57 @@ O   L
   >>> carro.calcular_velocidade()
   0
   >>> carro.calcular_direcao()
-  >>> 'Norte'
+  'Norte'
   >>> carro.girar_a_direita()
   >>> carro.calcular_direcao()
-  >>> 'Leste'
+  'Leste'
   >>> carro.girar_a_esquerda()
   >>> carro.calcular_direcao()
   'Norte'
   >>> carro.girar_a_esquerda()
   >>> carro.calcular_direcao()
-  >>> 'Oeste'
-
-
+  'Oeste'
 """
+
+class Carro:
+    def __init__(self, direcao, motor):
+        self.direcao = direcao
+        self.motor = motor
+
+    def calcular_velocidade(self):
+        return self.motor.velocidade
+
+    def frear(self):
+        return self.motor.velocidade
+
+class Motor:
+    def __init__(self):
+        self.velocidade = 0
+
+    def acelerar(self):
+        self.velocidade += 1
+
+    def frear(self):
+        self.velocidade -= 2
+        self.velocidade = max(0, self.velocidade)
+
+
+
+class Direcao:
+    def __init__(self):
+        self.valor = 'Norte'
+        self.atuador = 0
+
+    def girar_a_direita(self):
+        self.atuador += 1
+        direcoes = ['Norte','Leste','Sul','Oeste']
+        self.valor = direcoes[self.atuador]
+        return self.valor
+
+
+    def girar_a_esquerda(self):
+        self.atuador += 1
+        direcoes = ['Oeste', 'Sul','Leste', 'Norte']
+        self.valor = direcoes[self.atuador]
+        return self.valor
+
