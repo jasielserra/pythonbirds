@@ -8,8 +8,11 @@ class Pessoa:
     def cumprimentar(self):
         return f'Olá {id(self)}'
 
+class Homem(Pessoa):
+    pass
+
 if __name__ == '__main__':
-    sofia = Pessoa(nome='Sofia', idade='8 meses')
+    sofia = Homem(nome='Sofia', idade='8 meses')
     lis = Pessoa(nome='Liz', idade='8 meses')
     sara = Pessoa(sofia, lis, nome='Sara')
     print(Pessoa.cumprimentar(sara))
@@ -31,3 +34,4 @@ if __name__ == '__main__':
     print(sara.olhos)
     print(lis.olhos)
     print(id(Pessoa.olhos), id(sara.olhos), id(lis.olhos))
+    print(isinstance(sofia,Homem))
