@@ -6,10 +6,12 @@ class Pessoa:
         self.filhos = list(filhos)
 
     def cumprimentar(self):
-        return f'Olá {id(self)}'
+        return f'Olá {self.nome}'
 
-class Homem(Pessoa):
-    pass
+class Humano(Pessoa):
+    def cumprimentar(self):
+        cumprimentar_da_classe=super().cumprimentar()
+        return f'{cumprimentar_da_classe}. Aperto de mão'
 
 class Mutante(Pessoa):
     olhos = 3
@@ -17,7 +19,7 @@ class Mutante(Pessoa):
 
 
 if __name__ == '__main__':
-    sofia = Homem(nome='Sofia', idade='8 meses')
+    sofia = Humano(nome='Sofia', idade='8 meses')
     lis = Pessoa(nome='Liz', idade='8 meses')
     paulo = Mutante(nome='Paulo')
     sara = Pessoa(sofia, lis, nome='Sara')
@@ -40,4 +42,6 @@ if __name__ == '__main__':
     print(sara.olhos)
     print(lis.olhos)
     print(id(Pessoa.olhos), id(sara.olhos), id(lis.olhos))
-    print(isinstance(sofia,Homem))
+    print(isinstance(sofia,Humano))
+    print(sara.cumprimentar())
+    print(sofia.cumprimentar())
